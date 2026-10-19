@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101a35">
+<title>MindSpark | GK Quiz</title>
+<style>
+:root{--bg:#0b1020;--panel:#151e38;--panel2:#1b2747;--ink:#f5f7ff;--muted:#b9c4e3;--blue:#60a5fa;--cyan:#67e8f9;--green:#34d399;--red:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1c2d58 0,#0b1020 55%);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh;padding:20px}
+main{max-width:760px;margin:0 auto}.top{display:flex;align-items:center;gap:13px;margin:14px 0 24px}.logo{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:29px;background:linear-gradient(135deg,#60a5fa,#a78bfa);box-shadow:0 8px 28px #0005}.brand{font-weight:850;font-size:1.5rem;letter-spacing:.3px}.tag{color:var(--muted);font-size:.92rem}.pill{margin-left:auto;border:1px solid #344466;color:#d8e4ff;border-radius:999px;padding:7px 11px;font-size:.8rem}
+.card{background:linear-gradient(145deg,#172342f5,#111a32f5);border:1px solid #344466;border-radius:25px;padding:clamp(20px,5vw,34px);box-shadow:0 18px 50px #0003}
+h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.05;margin:12px 0}.accent{color:var(--cyan)}p{color:var(--muted);line-height:1.6}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-size:.78rem;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.stat{background:#ffffff08;border:1px solid #ffffff12;border-radius:15px;padding:13px}.stat b{display:block;font-size:1.25rem}.stat span{font-size:.78rem;color:var(--muted)}
+button,select{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:14px 18px;font-weight:750;transition:transform .12s,filter .12s}button:active{transform:scale(.98)}button:focus-visible,select:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}.primary{width:100%;color:#071426;background:linear-gradient(100deg,var(--cyan),#93c5fd);box-shadow:0 8px 22px #38bdf833}.secondary{background:#ffffff0b;color:var(--ink);border:1px solid #405078}.category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}.category{display:flex;align-items:center;gap:10px;text-align:left;background:#ffffff08;color:var(--ink);border:1px solid #344466}.category.active{border-color:var(--cyan);background:#67e8f918}.emoji{font-size:1.45rem}.small{font-size:.85rem;color:var(--muted)}
+.hidden{display:none!important}.quiz-head{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted);font-size:.9rem}.track{height:7px;background:#ffffff13;border-radius:99px;margin:15px 0 25px;overflow:hidden}.track span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0%;transition:width .2s}.question{font-size:clamp(1.25rem,4vw,1.75rem);line-height:1.35;margin:0 0 22px}.answers{display:grid;gap:11px}.answer{display:flex;align-items:center;gap:12px;text-align:left;background:#ffffff08;color:var(--ink);border:1px solid #3a496d;padding:15px}.letter{display:grid;place-items:center;min-width:34px;height:34px;border-radius:10px;background:#ffffff12;color:var(--cyan);font-weight:850}.answer.correct{border-color:var(--green);background:#34d39918}.answer.wrong{border-color:var(--red);background:#fb718518}.answer:disabled{cursor:default}.feedback{padding:14px;border-radius:13px;margin-top:16px;background:#ffffff0b;color:var(--muted);line-height:1.5}.quiz-actions{display:flex;gap:10px;margin-top:18px}.quiz-actions button{flex:1}.result{text-align:center}.big-score{font-size:4rem;font-weight:900;letter-spacing:-2px;margin:8px 0}.result-icon{font-size:3rem}.foot{text-align:center;color:#8290b4;font-size:.8rem;padding:20px 0}
+@media(max-width:480px){body{padding:13px}.pill{display:none}.stats{gap:7px}.stat{padding:10px}.category-grid{grid-template-columns:1fr 1fr}.quiz-actions{flex-direction:column}}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="logo" aria-hidden="true">🧠</div><div><div class="brand">MindSpark</div><div class="tag">Think · Learn · Challenge Yourself</div></div><div class="pill">GK QUIZ</div></header>
+<section id="home" class="card">
+<div class="eyebrow">Your daily brain boost</div><h1>Make your mind<br><span class="accent">spark.</span></h1>
+<p>Explore the world, test what you know, and build your knowledge one question at a time.</p>
+<div class="stats"><div class="stat"><b>🌍</b><span>General knowledge</span></div><div class="stat"><b>⚡</b><span>Quick rounds</span></div><div class="stat"><b>🏆</b><span>Track your score</span></div></div>
+<div class="eyebrow">Choose a category</div>
+<div class="category-grid" id="categories">
+<button class="category active" data-category="Mixed"><span class="emoji">✨</span><span><b>Mixed GK</b><br><span class="small">A bit of everything</span></span></button>
+<button class="category" data-category="Science"><span class="emoji">🔬</span><span><b>Science</b><br><span class="small">Discover how it works</span></span></button>
+<button class="category" data-category="Geography"><span class="emoji">🌎</span><span><b>Geography</b><br><span class="small">Places and our planet</span></span></button>
+<button class="category" data-category="History"><span class="emoji">🏛️</span><span><b>History</b><br><span class="small">People and the past</span></span></button>
+<button class="category" data-category="Sports"><span class="emoji">🏅</span><span><b>Sports</b><br><span class="small">Games and records</span></span></button>
+<button class="category" data-category="Technology"><span class="emoji">💡</span><span><b>Technology</b><br><span class="small">Ideas and inventions</span></span></button>
+</div>
+<button id="start" class="primary">START QUIZ&nbsp; →</button>
+<p class="small" style="text-align:center;margin-bottom:0">10 questions · Multiple choice · Instant feedback</p>
+</section>
+<section id="quiz" class="card hidden" aria-live="polite">
+<div class="quiz-head"><span id="categoryLabel">Mixed GK</span><span id="counter">Question 1 of 10</span></div>
+<div class="track"><span id="progress"></span></div><h2 id="question" class="question"></h2>
+<div id="answers" class="answers"></div><div id="feedback" class="feedback hidden"></div>
+<div class="quiz-actions"><button id="quit" class="secondary">Exit quiz</button><button id="next" class="primary" disabled>Next question →</button></div>
+</section>
+<section id="result" class="card result hidden">
+<div class="result-icon" id="resultIcon">🏆</div><div class="eyebrow">Quiz complete</div><h1 id="resultTitle">Great work!</h1><div class="big-score"><span id="score">0</span><span style="font-size:1.5rem;color:var(--muted)"> / 10</span></div><p id="resultMessage"></p><div class="stats"><div class="stat"><b id="correctCount">0</b><span>Correct</span></div><div class="stat"><b id="accuracy">0%</b><span>Accuracy</span></div><div class="stat"><b id="bestScore">0/10</b><span>Best score</span></div></div><button id="again" class="primary">PLAY AGAIN&nbsp; ↻</button><button id="homeBtn" class="secondary" style="width:100%;margin-top:10px">Choose another category</button>
+</section>
+<div class="foot">MindSpark · Keep learning, keep growing ✨</div>
+</main>
+<script>
+const bank = [
+{c:"Science",q:"Which planet is the largest in our solar system?",o:["Earth","Mars","Jupiter","Venus"],a:2,e:"Jupiter is the largest planet in our solar system."},
+{c:"Science",q:"Which gas do plants absorb from the air during photosynthesis?",o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],a:1,e:"Plants use carbon dioxide, water and sunlight to make food."},
+{c:"Science",q:"What is the centre of an atom called?",o:["Cell","Core","Nucleus","Electron"],a:2,e:"The nucleus is at the centre of an atom."},
+{c:"Science",q:"At sea level, water normally boils at what temperature?",o:["50°C","75°C","100°C","150°C"],a:2,e:"At standard atmospheric pressure, water boils at 100°C."},
+{c:"Science",q:"Which organ pumps blood around the human body?",o:["Lungs","Brain","Kidneys","Heart"],a:3,e:"The heart pumps blood through the circulatory system."},
+{c:"Geography",q:"Which is the largest ocean on Earth?",o:["Atlantic Ocean","Indian Ocean","Arctic Ocean","Pacific Ocean"],a:3,e:"The Pacific Ocean is the largest and deepest ocean."},
+{c:"Geography",q:"What is the capital city of Japan?",o:["Seoul","Tokyo","Beijing","Bangkok"],a:1,e:"Tokyo is the capital of Japan."},
+{c:"Geography",q:"Which imaginary line divides Earth into the Northern and Southern Hemispheres?",o:["Prime Meridian","Tropic of Cancer","Equator","Arctic Circle"],a:2,e:"The Equator is at 0° latitude and divides Earth into two hemispheres."},
+{c:"Geography",q:"Which is the smallest continent by land area?",o:["Europe","Australia","South America","Antarctica"],a:1,e:"Australia is the smallest continent by land area."},
+{c:"History",q:"In which year did India become independent?",o:["1942","1945","1947","1950"],a:2,e:"India became independent on 15 August 1947."},
+{c:"History",q:"Who was the first person to walk on the Moon?",o:["Yuri Gagarin","Neil Armstrong","Buzz Aldrin","John Glenn"],a:1,e:"Neil Armstrong stepped onto the Moon in July 1969."},
+{c:"History",q:"The ancient pyramids are most closely associated with which civilization?",o:["Roman","Mayan","Egyptian","Persian"],a:2,e:"Ancient Egyptians built the famous pyramids of Egypt."},
+{c:"Sports",q:"How many players from one football team are on the field at the start of a standard match?",o:["7","9","11","12"],a:2,e:"A standard football (soccer) team starts with 11 players on the field."},
+{c:"Sports",q:"Which sport uses a shuttlecock?",o:["Tennis","Badminton","Squash","Table tennis"],a:1,e:"Badminton is played with a shuttlecock."},
+{c:"Sports",q:"How many rings are on the Olympic symbol?",o:["Four","Five","Six","Seven"],a:1,e:"The Olympic symbol has five interlocking rings."},
+{c:"Technology",q:"What does CPU stand for in computing?",o:["Central Processing Unit","Computer Power Utility","Core Program Upload","Central Print Unit"],a:0,e:"CPU stands for Central Processing Unit."},
+{c:"Technology",q:"Which of these is used to store files permanently in a computer?",o:["RAM only","SSD","CPU core","Fan"],a:1,e:"An SSD stores data even when the computer is switched off."},
+{c:"Technology",q:"Which invention is commonly used to take digital photographs?",o:["Router","Camera","Speaker","Keyboard"],a:1,e:"A digital camera captures and stores photographs electronically."},
+{c:"Mixed",q:"Which is the national animal of India?",o:["Lion","Bengal tiger","Elephant","Leopard"],a:1,e:"The Bengal tiger is India's national animal."},
+{c:"Mixed",q:"How many days are there in a leap year?",o:["364","365","366","367"],a:2,e:"A leap year has 366 days."},
+{c:"Mixed",q:"Which language is primarily used to structure the content of web pages?",o:["HTML","SQL","Python only","C++"],a:0,e:"HTML structures the content of web pages."},
+{c:"Mixed",q:"Which instrument is used to measure temperature?",o:["Barometer","Thermometer","Compass","Speedometer"],a:1,e:"A thermometer measures temperature."},
+{c:"Mixed",q:"Which is the closest star to Earth?",o:["Sirius","Polaris","The Sun","Proxima Centauri"],a:2,e:"The Sun is the star closest to Earth."},
+{c:"Mixed",q:"How many sides does a hexagon have?",o:["Five","Six","Seven","Eight"],a:1,e:"A hexagon has six sides."}
+];
+let category="Mixed",questions=[],index=0,score=0,answered=false,best=Number(localStorage.getItem("mindsparkBest")||0);
+const $=id=>document.getElementById(id);
+function show(id){["home","quiz","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+$("categories").addEventListener("click",e=>{const b=e.target.closest("button[data-category]");if(!b)return;category=b.dataset.category;document.querySelectorAll(".category").forEach(x=>x.classList.toggle("active",x===b))});
+function startQuiz(){const pool=category==="Mixed"?bank:bank.filter(q=>q.c===category);questions=[...pool].sort(()=>Math.random()-.5).slice(0,Math.min(10,pool.length));index=0;score=0;show("quiz");$("categoryLabel").textContent=category==="Mixed"?"Mixed GK":category;$("next").textContent="Next question →";renderQuestion()}
+function renderQuestion(){answered=false;const q=questions[index];$("counter").textContent=`Question ${index+1} of ${questions.length}`;$("progress").style.width=`${index/questions.length*100}%`;$("question").textContent=q.q;$("answers").innerHTML="";$("feedback").classList.add("hidden");$("next").disabled=true;$("next").textContent=index===questions.length-1?"See results →":"Next question →";q.o.forEach((option,i)=>{const b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span></span>`;b.querySelector("span:last-child").textContent=option;b.addEventListener("click",()=>choose(i));$("answers").appendChild(b)})}
+function choose(i){if(answered)return;answered=true;const q=questions[index];[...$("answers").children].forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add("correct");else if(j===i)b.classList.add("wrong")});if(i===q.a)score++;$("feedback").textContent=(i===q.a?"✅ That's right! ":"💡 Not quite. ")+q.e;$("feedback").classList.remove("hidden");$("next").disabled=false;$("progress").style.width=`${(index+1)/questions.length*100}%`}
+function finish(){show("result");$("score").textContent=score;$("correctCount").textContent=score;$("accuracy").textContent=Math.round(score/questions.length*100)+"%";best=Math.max(best,score);localStorage.setItem("mindsparkBest",best);$("bestScore").textContent=best+"/"+questions.length;$("resultIcon").textContent=score===questions.length?"🏆":score>=questions.length*.7?"🌟":score>=questions.length*.4?"👏":"🌱";$("resultTitle").textContent=score===questions.length?"Perfect score!":score>=questions.length*.7?"Great work!":score>=questions.length*.4?"Good effort!":"Keep practising!";$("resultMessage").textContent=score===questions.length?"Amazing — you answered every question correctly.":`You got ${score} out of ${questions.length} questions right. Every quiz is a chance to learn something new!`}
+$("start").addEventListener("click",startQuiz);$("next").addEventListener("click",()=>{if(!answered)return;if(index<questions.length-1){index++;renderQuestion()}else finish()});$("quit").addEventListener("click",()=>show("home"));$("again").addEventListener("click",startQuiz);$("homeBtn").addEventListener("click",()=>show("home"));
+</script>
+</body>
+</html>
